@@ -1,0 +1,16 @@
+/* footer start */
+#footer {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 20px;
+    background-color: #e3e6e8;
+    border: 1px solid #eff2f4;
+}
+span {
+    float: right;
+    margin-right: 10px;
+    color: black;
+}
+/* footer end */

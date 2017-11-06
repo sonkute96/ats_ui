@@ -1,0 +1,150 @@
+<div id="ats-map" [ngStyle]="styleFromShowOption">
+  <div id="asset-tracking">
+    <div class="asset-label">
+      <label class="label">
+        <strong> Asset tracking</strong>
+      </label>
+    </div>
+    <div class="map-options">
+      <button class="btn-map-option"> Map </button>
+      <button class="btn-detail-option"> Detail </button>
+      <button class="btn-alert-option"> Alert </button>
+    </div>
+  </div>
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [ngStyle]="styleFromMinimizeOption">
+    <div *ngFor="let dev of devices | async">
+      <agm-marker (markerClick)="clickedMarker(dev)" (mouseOver)="mouseOverMarker(dev)" (mouseOut)="mouseOutMarker()" [latitude]="dev.latitude"
+        [longitude]="dev.longitude" [iconUrl]="'../assets/icon-maps/taxi_w.png'">
+        <agm-info-window *ngIf="mouseOverDevice !== null">
+          <span>Device_Id: {{mouseOverDevice.id}} </span>
+          <br>
+          <span>Latitude: {{mouseOverDevice.latitude}} </span>
+          <br>
+          <span>Longitude: {{mouseOverDevice.longitude}} </span>
+          <br>
+        </agm-info-window>
+      </agm-marker>
+    </div>
+  </agm-map>
+</div>
+<div id="app-left">
+  <div *ngIf="!showOption" class="show-option">
+    <button class="btn-show" (click)="showOptions()">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAA7RJREFUeAHtWjmLFkEQVfFADVQQPCJ3DUyUDT0wMVNzr8xIBWMVo01EzMXdUFD8AYruZp65VySKmesGXoEuqODxHuuDprenu2e+nm9WphoeNd1V9aa6vpmanp5vyRJrlgHLgGXAMmAZsAxYBiwDlgHLgGVgPgNPIPa3mIxpcI+2yD8w9R8wEHeBsYHZFhKQew64AKxYqO5+RAmg/AXcArYXDMvlfwnevQW5i1C5Aer4J5gngC0FziBOSSZ5ElhfgLsIhQILSV66lwcMNsTLsVngGNB5qwrQHf+MKHkPr2kQrcsTOp4C50gD3mIuflBvweyPqT8D3RmgTjGTb0x2WiT9wFZigmcBXqK+Tv030B0HlgGpJh/JcTh8B9R35QuMD71IugHwWG0tDi4CXwDfRv1n0B0CYk22krTdAdwHNOZKFkkW4KEVSffkPPbbBgxcAXiZ+rbqP4JuHxBqspGUzVIcnAQ+ANK58j3GjwKtN/ekPK5qW6HgL8NHpO+j/h3odgFuk07S1fF4I3Ad+A3IxpWtF0n3ZDxONS6SuFjiper7ss/xm4Aqu28DVbAdwOgrwLdnn1ffeaBO8YV5XvNPmOc1v2zm8tn3V/8HdFcD+hj/KijHgViR3BMjaKJTwJJ1Ofgi9RiQf0rm8KeK5DWQrMshyrHxA87xCdkcxiCfCj6f3w/5hsZyiuSRkGPdsaYBhs7DdcEJgOsEn1f9kF9sLFUk78F5W4wgpVNgkin7HD2L1WlgBhCvZI5/yCZWJL/B4RywPOSYGlNgkin7OvrVMGb1/gSU4E8Vyec4z26gVlNgkrWcM425qrsE8Jcq0YoWSU1cskSAVRybqxQNxlNFkrffgiKZ8/LSIJb/20W/vGQbs+ntLdDbItjbx2CvF0K9XQr39mVoDI+LXr4O52yI3EByRv49T/V4lax6zMbW+nNw6nxDJGdL7DYC3enNUBOX9NSLf0ssZ1P0IWZVtZ2tiUsqAamlbOebojnb4k8xm4OaUYXUxCVplnqZmYBNZ9viOR9GXiNAftfjr5hqmrjkOBxie35VV1LqPI31Ckwy9mnsHc5yCqiz8SDemGSR47dHriCH3mKBSfcRUXHHhWv7uk0cVXIKhHpi1OUuYl8VGMe/AtzIGGQHtop/Fry8jTpvoQC1p7+pQHQ+Pz+cTAJDK3KpObgBMjh3EZPyzdG7/Iv6LzKhRUzOBFM2TECnRS4V4AMYtPnomQb/aCoI01sGLAOWAcuAZcAyYBmwDFgGLAOWgTYz8BeRQKti+fwlwwAAAABJRU5ErkJggg=="
+        class="icon-show">
+    </button>
+  </div>
+  <div *ngIf="showOption">
+    <div class="hide-option" style="left:0px; top:0px; width:260px">
+      <button class="btn-hide" (click)="showOptions()">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAEdElEQVR4Xu2aSegURxTGf38XcCOSgyguJCAoiBuiIIioJw/iwRgRQZKIRHFfUHDf94hG0YMmhogQiOhJPAREiIGgIh4UBCXBoEaMcQeJJojhk2oYm6rpqZmqnhmm32UO01313lfvfW+pbqPFpa3F7acAoPCAFkegCIEWd4CCBIsQKEKgxREoQqCBHKA3cASYHEmn0cBOYELp+o3iAUuBHUBnCJ6ZhgPbgEnG8PdsrjcAQ4ETgH4TCaVTf3Pin6ZAbQgAuplTWQi0T7l8rQD0BDYDs4EOlnCqOwBTgINAX0esVwvAB8BqYIkJJReV1A0Akdx3wMQMkvMFoBOwyBj/YQUEWhcAlhuXF8lliQ8AcvMtgMC1yXOge7kQ89ksS3Hb/yOBb4Fhjpf3AQLHNzNNA7YCAx3rvgL2A18BT+oBgEhOaW0B0M6i5FVgFnANeOsBwDhgLyBgbfKvqSWU9h6aB8quH8MDPjEk18ei4QtgHXCoxPBKAFAu31WGP94Ax4ENwJ+pfXMDIIvkThmyeuChoHK5TnO6o0CScScNqL85vCI6AMrjSj0io64WJe4CXwI/eSioXK7T1HsdHe+dAVYBNzLIKSoAo4BvypCc3FZFiUjJJWkFRW4rAaU3m5wH1gCXKmTlKACI5NRYzHeQ3GVDclmnIxvSCrrsugisBQSAjwQHYKohOVvufWbc8qiHYVkAKFOIOOXy1UgwAPoZd3dVcj8A6ur+9tTSBcAtYCPwoweYtq1rBkAktwzY5CC5P4DPgQuehiePpxW8Ywj1e0DprVapCYARpl0dZNFCRccek6Ze16BlouBfwHZTyGjtUFIVACI5Mfg8B8n9CnwG/B5AS5WqAvIA8E+A9dJLeAMwA1CN3suijJoLxbncM5SoWdG6scQbADUa6tdtADw2fKApTihpOABkWJ4h8MjUFIczCqZqAff2gNKN8iTBeybThGJ/V5bxHojknQZvmorvdLVHnnqvJg8oXSvvQugKsAL4uUYgggGQ6JF3KXzOzPsESDUSHICEJPNuhjRPUDOkEtlHogCQKKB2+BgwxKGRChzV8z7tsOYKcv0ujjW1n2YF9ytEISoA0iHGQKSHAW6OYyAiQDVW09zxaQYQ0QFI9o8xEvvY9BqqTm3DVVWQmvx+Dbx0AJEbAMn+MYaig01vklxwpm1VI6VJkuYQ/8VKgxWG3LvHYo3FxwC7Af3a5DawHtBsIjn53D2gVLGsixFdXmjWUCqVjOrlCcpCLvK9blLn2ax7h0o28zl517MyUr1+6KuxmYYjPnJs/AswthzAeQEgHbJIMtHTVyeNzeeauaHG6Vni3QtkLej7f6zrcd1JyNNUQ6QvRJ0h5ou2r7Gu52N+IKErclWMupe03S3U3QNKQYn5iYxCTlXlF6mvUBoKAIGhAmexyePyjNBeOcBUjGriJA0HQOIRsT+TU0rW1fp435wbKu4bcp3Q7taQRpZTqgCg6Y4ssMKFBwQGtOmWKzyg6Y4ssMKFBwQGtOmWKzyg6Y4ssML/A/Md6UHK0WuUAAAAAElFTkSuQmCC"
+          class="icon-hiden">
+      </button>
+    </div>
+    <div class="content">
+      <div class="minimize-option">
+        <span class="label"> Fleet </span>
+        <button class="btn-minimize" (click)="minimizeOptions()">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAHRJREFUeAHt0DEOACAIBEH0/3/W2oSKDhzKSyh2IhwBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAj8IrCTyJNuk6Wnek8oqLQAqan4IECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAp0ELkJ7AQj92WLqAAAAAElFTkSuQmCC"
+            class="icon-minimize">
+        </button>
+      </div>
+      <div *ngIf="!minimizeFolder">
+        <div class="area-option">
+          <ul>
+            <li class="all-of-areas">
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAiRJREFUaAXtWL1KA0EQ/uYMJmhifAEDaawUmwg21naCjSCK4FNop5ZWPoIiiOADiPaCIFroCYk2gdgKglHQmGSdDV483DtyFzG3R3Zg2cvs3u73zd/tBjBiLGAsYCxgLNDPFiAv8uIAOQgscVvm8UmvOYpOYJvWsKXo/1mhEGDweTRxw/tmQu8dAQlLASmw0xV4uRBhU+z11gteBOYUUmEUPSahhtA+R74eYrNHD7kd0SoqfpB0JuBgrsLCFJMoOwp3r4aQe1SP5wzHhMxLT4kDATAB37yMBwFgxNP8rIwLAT/8SPiO+A0Q530mDYxmgeFhrv1KHfB78096cYknXuACVnOHCg/nzmLK7qJTGc2NAWkGHp002GjzNF08kRDChVCWQzFa8BLzAITYFYK/EKEJpDl09JBxXI3nJZRwHkgm9YAvUdStpuyCE5DJmhyU70QvAq+YKVUkkOAEJPgeVZyOFiLcMZSQHkimOq7bwwm3zl7BPZDSKP4JdrwJCOrCAzpVoI9ESA8k+MQhmxYiHmnWfnagBMsBneJf/MS/JBGMgE7hQz/xH5xA/D2g0TfACusBnY4QQA00dO8kcLAQ0ukIARSpcP3ZicCLewK0OkJQu/47GNUqRDhzBlu9TglMonULc+PzIrDOE6rtSfqU0FOUS8dtXN8PCoHWP2AWJvjCtsFzbETqAb441mo2GvUVvL0v0CIavwmY38YCxgLGAsYC/W2BLxIYaITxKGdQAAAAAElFTkSuQmCC"
+                class="icon-folder"> All
+            </li>
+            <ul *ngFor="let fleet of fleets | async" class="areas">
+              <li (click)="onSelectFleet(fleet)">{{fleet.name}}</li>
+            </ul>
+          </ul>
+        </div>
+        <div class="list-of-assets">
+          <div class="list-label">
+            <span class="label"> List of Assets </span>
+          </div>
+        </div>
+        <form class="search-bar" (submit)="search($event)">
+          <span class="label"> Search: </span>
+          <input class="txt-search" placeholder="Type of search" value="">
+          <input type="submit" class="btn-search" value="Search">
+        </form>
+        <div class="position-content">
+          <table>
+            <tr class="meta-data">
+              <td *ngFor="let labelAsset of labelAssets"> {{labelAsset}} </td>
+            </tr>
+            <tr *ngFor="let asset of assets | async" (click)="onSelectedAsset($event)">
+              <td> {{asset.identifier}} </td>
+              <td> {{asset.serial_no}} </td>
+              <td class="stamp"> {{asset.stamp}} </td>
+              <td> {{asset.device_id}} </td>
+              <td> {{asset.status}} </td>
+              <td> {{asset.product}} </td>
+              <td> {{asset.description}} </td>
+            </tr>
+          </table>
+        </div>
+        <div class="option-list-page">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAqtJREFUeAHtWjtOHEEQRUaCxDhChCDHSCZ2wgFITG4R+QROOIEjn4AEn8CJL4CQcweQIkFmiQw5wZbA+JVwSbWl2drp6u5pRFdJRff0573Xb3ehZpalpYhwIBwIB8KBcCAcCAfCgXDA68ADNsr04nj3vcDGQ+/mEvvk4ak/ZWyB7BQ5Ne/MGVsZcAAVN/8P35UB6zj0V3FwfgEw1CZYALc1VewB/CeSuWRbk9fEliKoXyNeAvQI+Rep+fi6Bu8oTBbA7ahNCYveYu0FkvHntQmQZZdqQaXQVwD0CXmH1Bx/BsYw1Ca0uBIqtgHyA6mx6focuTMwh6E2oUXmqKCi5iPyFqlx7zH2GbmKpNDzj6MNfpYSsgntJwMHI/wr5C5SRileienqlxCiixqJ+QWqXg0ok2uo3yxyhMwragjzGrlvnCqH14BNn/IKsYqab5CxsUCKl3cBbPp0qhCrqPkF+g8jJaTyjoRNX5YixCpqvoP6dQJ9Cm8CbPrSMUKsouY3KOl+fjmRegxvIqRv+SIhVlFzBso3PtqnXwekFDUeDxYZ78F07RkSYhU1l2DRRY2HeIjXg5O9Rwt5D0T5pEbOH2NuLZvxEUDiUr9ZaCFD11TUvCusUPO44OlzGpHpgH4luv8IkJ9d/xLkN1TXfwbZBGq7LYSkCV2XwtKIbm+GpAld3w5LI7p9ICJN6PqRmDSi24ei0gSreLrCQn0HqStQiTVpv6SQlOKpJG+WYTWEWMXTs/5qTL4SVvH07L8clUZYxZN898k9k/alCOrXCKt4Yv4avKMwWQC3ozY5F1nFkxMyfxsfnNt8RBthXvFk76o4ywfntiLVDLQunmYmp7zgg3M7JfcWyE6RxN0s+ODcTi2Eiqem/yo79YGDLxwIB8KBcCAcCAfCgXCghAP/ABEbKTgtKnY3AAAAAElFTkSuQmCC"
+            class="icon-skip" />
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAmhJREFUeAHtmi1IBUEUhf1HERERRBAEQTAIBoPBYLAYDBaT5QWbxWIyWSwmk8VishhesRgMFsFgMAiCIAiCICIiovjvN/AujJf3s7xddffdGTjc3bMzd+45y9Pd2amrCy04EBwIDgQHggPBgeBANhyYz0aZyVfZQMo18JV86vRnbKfEfEG8OQP6EH7siTdlwCjCr5R4MwbMIPyxiHgTBiwh/KOE+Jo2oBnRm2WEO/E1a0AX4vaLiH8twkHVVhtEzhmQOyzxDm6yCA9VO20CKbdAREs8hxsqyBROYoHOfsgh4QWIMIkHcN2ePOElepeyeVhP2atABPlxC74F+M2/7o4z3dqofgdoUZ9wyyWU6b4luqWf7qXEI6AFPcHNlilf9y/TNb2XRijtEmgx13BjFcrWYyp0T9/laUp6AFrICVx/hHL1uAhD0tNlkVLegRaxC9cRsUw9NuKw/+3WxPQbQBfvztdBI4jadI6o4/6tXycz7wFd+BvcQhVV6TxVpPi7IQNMdQp00fdwU1WWoXNVmeb3h40zxQ3QBV/ADceYXueLker3hs6R+hnoYg/hemJOq3PGTJfscPdYuwLck5wudBuuFcRtOm/cfD/Gu+Xm0BJwwOxPwPfO9B9BMcL0v0ExwfSDkJhg+lFYTHDR7MuQb4Lp12ExwvSCiJhgeklMTDC9KComuPcHs8viYoKLOWDyw4hvwgQnZj+NiRGmP46KCaY/j4sJpjdIiAkumt0i45sww8kj0Mth7txMM71NTu6y6Y2SYkI7B3kgPwfhTUXTm6X9O212u7xvQjgODgQHggPBgeBAcCAZB74BjwiBZ14cRBsAAAAASUVORK5CYII="
+            class="icon-left" />
+          <span class="label"> | Page
+            <input class="n-page" type="text" value="1" name="n-page"> of 10 | </span>
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAA/NJREFUeAHtml2oTWkYxx0fIWRMKPKRKeOChMKFg2iK3BwpjZJxQy5QGrnAFSluxBUpUTJuzskFSrjAxSGZqRnlIyOdRBmE8Zlvv39Ztfq399l7r3Petdfa1lO/1nred73P83+effZea72dHj0KKzpQdKDGDkyr8fpMX94rgbp7rBkE7fAhwfrcL/lCBeIO/JL7ahIUEDVAx89wGH5MECe3S+INiM7/o5plua2oRuFR0aWOp4g1psZ4ubu8VOHxsRdUtB565q6yKgXHi9X5W/Ax+ZdhEjScebE/U+F58HH572A79IWGMS9UhTXBangGPi//JsyGhjAvMF7UCJxW8Gvkf4L9MBhybV5cqWJaGLwPfq18jS+G3JoXVa4QfdL7QJ+8r5HfBvqLyZ15MZUKaOaCG+Dr5Os3Q78d+g3JjXkh1QjXXWAb6K7g6+VfAN1NcmFeQC2iJ3LxJfAY8vU8sQX6QKbNxdcqVk+I60BPjB5L/j8wAzJrLjqp0NEsPAkeT/5H2AMDIXPmgrsq8FcCPASPK78DFkKmzIV2hzjtJxwC7S94fPlHYRhkwlxgd4qaT7B/wXPIfwwroO7m4rpbUH8C7gLtN3ou+WdgHNTNXFQoIVMJ/Cd4Pvmv4HdIsqnLsq6ZC+patM5X92Z6I7wGzyv/KkyBVM2FpJH8J5KcBc8tX1+VnaCvTirmIlJJ+i3JbxyfgGuQfxvmQXDz5METWgLdDv8A1yFft9GDMASCmScOlqiTwEuZ+x9ci/wOmAvBzJMGS1Qi8CjGToBrkK/H570Q/PHZk5MzuOkFai2U+9SvMTczuIpvCdJugF6h28Hzytcr9FZI9RXahZA/iFXaRLlI1glBMlcImkYDmtFQbhvtOXNroKmCzmDTIRtQaSP1OFWNDFZZlYFDNUBb5eW20h8wt6RKfcEv6+4GaGu8DTyufD3YHIAfIDPmQpMK03d4NWhr3GPKvwVzIHPmYpMI1Bb4BfBY8t/DDugHmTQXXYtI3a9139b92+PIvwKTIdPmwqsVqyc1PbH5evkvYQPUZYODvDWZF1BpsZ7N94Ke1X2t/NMwFnJjXkRnwhcx2QG+Rv4jWA65My+mVAHDGTwGfm3kH2FuaKmFeRiLioiOcc26ta2Ecrs2d5lbEF+Qx/Oo8OgY1aB9u3MQjceP+v7vhgGQe4sXpnPt3G6Ccju3fzM3HRrGvAF/UZmPyX8DmyHVd3XyBbdSxfrYeVSMD66kTgm82Lj/FE2roG7v6mn0JF5w/LyV5Hqza3iLF61zvcO3NHzVsQKjBujf3/aBdnG+K1MDrsOsRqg6yduXGqB/VOhohAYUNRQdKDpQdKDoQNGB77gDXwHvUw6VDkK0DAAAAABJRU5ErkJggg=="
+            class="icon-next" />
+        </div>
+        <div class="asset-trouble">
+          <div class="asset-trouble-label">
+            <span class="label"> Assets In Trouble </span>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAA6RJREFUeAHtm71uE0EUhW1A4k+iSAU0pkEpACEFiQrhpCG8AAU1RSRKniBFGhpqGp4BCQFKQYogWsoUQKJQkYIKIQSRgHA+ZIvL9ezG3p1d/8xe6cgz473nnjl2xju7m1aricaBxoGUHWhXPPl58XeFi8J54VzvlTbxqYe93usHvW4K74SpjStSviZsCwcFQS4ccE1NLEkpn17RSWflwQn3xMZlKVsXsiYQa5wa1Ioa7RJsJ5W7KjwQjgmh+KbBN8Jr4aNg/+bV/W9NuKD+TeGGcFoIxU8NPhJWhe/C2OKSKm8JoU/3t8ZfCHeEE8KoQQ65cMAVqrGlcTSMJZZV9asQEvZS4wsRVcEFZ6gWGtBSa9xStX3BC+Ln63aFSuCmhq+LFjTVEixAXwQv4rHGTtWggBrU8vXRFH1x9POZ08COK86CtOIPrKFPTWpbI9CGxkqCX4pngi1I+14l1YYjpbbXg8Yyv2qZle8Hij3MPLq+N9DgTUBr1OiIza/4rzR2NGqVYmRoQIs1Aa1ojhZPxWQLfFb/bDT28kRsrtBkNaI5SnTFYolp343CHJcETV4n2kvHphgs8UZpxuoI0Ga1or1UXFe2JeSUdKEU479ky0s7RqDNnzYzh8LxRJlW6PPCTIOJljeWAVRBo+VmDoXiuLL8GV/Mc24rMqYBaLTczIG5jBycW1sitrBHRmbJTrDcMQ1AI1ot/6H7hNDEFp32/rbUDU9ct78Nt8IWbSfUDhlwzR1YekV1fFV2vVY/l6Fq7+oo+zWKfWHSctOOGWi1/LtFyH84kjNFSHJyrMDYBqDV8jOX3GgH3rWifun9rOt9gdS/QzY/65hRxkMa8/LZKtu9Sm5+aA3II5+59xoDZu4jjTChpBbB0J/AnjOx4/qT3PVa/VwGtIcMeO+Ouur6k9z1Wv1cBrSHDHjrjuq6/iR3vVY/l6G0J7UZCjnCFjLp7TCmJH1BBAOSvySGCWwtDww2GJzQQJvVivbSwYpqSWkndVkcB5O+MYIBHSHpW2OYkPTNUQzggkLSt8cxYU7YEeyiyJWXFaHuoCa1rRa0obHSSPoRmb6z7BP2Bes+7SQekuqbsKyG/2XoG8IjbdyojBVwwdnnt69oQMtYYmYelMy9ZHyItUk/Kmu9YXFcF+zXs4o2NSp/HtBObNT2khLYhMSePJxwT01wf25N2BaKmkEuHHBVGu1K2VutefF3haT+ZaZiTxv6xoHGgcaBxoHGgcaBSA78AfY3Mlga9dUTAAAAAElFTkSuQmCC"
+              class="icon-add">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="detail-device">
+  <div class="device-detail-label">
+    <span class="label">
+      <strong> Detail information </strong>
+    </span>
+    <button class="btn-hide" (click)="showHide()">
+      <img src="{{iconShow}}" class="icon-hiden">
+    </button>
+  </div>
+  <div *ngIf="showCheck">
+    <div class="device-detail-content">
+      <table *ngIf="deviceDetail !== null">
+        <tr>
+          <th class="label">Device_id: </th>
+          <td class="detail"> {{deviceDetail.device_id}} </td>
+        </tr>
+        <tr>
+          <th class="label">Latitude: </th>
+          <td class="detail"> {{deviceDetail.latitude}} </td>
+        </tr>
+        <tr>
+          <th class="label">Longitude: </th>
+          <td class="detail"> {{deviceDetail.longitude}} </td>
+        </tr>
+        <tr>
+          <th class="label">Received_time: </th>
+          <td class="detail"> {{deviceDetail.received_time}} </td>
+        </tr>
+        <tr>
+          <th class="label">Reported_time: </th>
+          <td class="detail"> {{deviceDetail.reported_time}} </td>
+        </tr>
+        <tr>
+          <th class="label">Speed: </th>
+          <td class="detail"> {{deviceDetail.speed}} </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

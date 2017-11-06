@@ -1,0 +1,16 @@
+<div id="header">
+  <nav>
+    <div id="app-header">
+      <div id="menu">
+        <div class="options" *ngFor="let menu of options">
+          <button (click)="display($event)" class="btn-menu">{{menu}}</button>
+        </div>
+      </div>
+      <div id="option-history">
+        <button class="btn-history">
+          <img class="icon-history" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAk9JREFUeAHtWjtOxEAMDQhoEBeg3IaKjitwAY7BHai5AlegpNsjUMAJaBYJ7gBICPwEKzkmiZmPMzs7tmRtnLH93jieSVaarnPxCngFvAJeAa+AV8ArEF6BAwq5JL0jfSX9mlmBCWxwAJdZ5ZjQHkjnnvQYHriA0yyyTyj3pGNkSt0HJ3AzF7RcqUlquOBmLo+EwIksyT4zR/0LAExgcy7gZi5vhMBBF+aI4wDA5lzALUh2grx/nAHIJSYHj0+9TuKzm4pee7wXoPYnmMrfOyC1grXH7xlMQO7KuSGyvnV8CeR+PLXla74DLPaArGvUuqOa7wAvgHWLbXp+74BNf0LW/LwDrCu86fktvgPkfwH5XSDHZY2kvxyXdqh/L96XQK8cDRrNd0DM+pFrOCZHSK9JvJBY1bf5DvACqD2y5Q41fAfIPUbuCXJcPrJJf18Cslyt2c13QMwDx5riGpMjJeZT4B9NJMMY54rYntTYAS+9GXTdubC5KcdkLPf99zWvKK7nlhsC5ByeyD4cIIF7GOO+iE0WnrBEAU5oBh+knMeK7GvS01/F9YqU+yAGscnCk5YoACZwRSp5aDZisogEypI0MAn2rltSyWXMhu/gfjd4UyHzLsYXwt56E0fReKWXZM99TK7oErA+KKl1EDayopug9VFZrQDFX4MgiIPJVoeltQI8kwNfghcTARjjvojNJlbH5TWC+Jzlk0r6FNb+S2tkSoxj8ly0OUz6x7wGOXj1116A6h9h4gS09ZOYPku4XMNZkq6T+BJYV6LV3+Y74Btkz4nzozVyHAAAAABJRU5ErkJggg=="> History
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>

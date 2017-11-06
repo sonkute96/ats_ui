@@ -1,0 +1,267 @@
+/* ats-map start */
+#ats-map{
+    position: fixed;
+    top: 60px;
+    left: 260px;
+    width: 100%;
+}
+agm-map {
+    position: fixed;
+    height: 830px;
+    top: 120px;
+    left: 260px;
+    width: 100%;
+}
+#asset-tracking {
+    width: 100%;
+    height: 60px;
+}
+.asset-label {
+    background-color: #e3e6e8;
+    height: 30px;
+}
+.label {
+   position: fixed;
+   margin-top: 5px;
+   padding-left: 10px;
+}
+.map-options {
+    padding-left: 10px;
+    height: 30px;
+    background-color: #eff2f4;
+}
+.btn-map-option, .btn-detail-option, .btn-alert-option {
+    width: 50px;
+    height: 20px;
+    margin-top: 5px;
+}
+/* ats-map end */
+
+/* left start */
+#app-left {
+    position: fixed;
+    top: 60px;
+    left: 0px;
+    width: 260px;
+    height: 800px;
+}
+.hide-option {
+    width: 260px;
+    height: 30px;
+    background-color: #e3e6e8;   
+}
+.content {
+    background-color: white;
+}
+.btn-hide {
+    float: right;
+    width: 25px;
+    height: 20px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.icon-hiden {
+    width: 10px;
+    height: 10px;
+}
+.minimize-option {
+    width: 260px;
+    height: 30px;
+    background-color: #eff2f4;
+}
+.icon-minimize {
+    width: 10px;
+    height: 10px;
+}
+.btn-minimize {
+    float: right;
+    width: 25px;
+    height: 20px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.label {
+    position: fixed;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+.area-option {
+    height: 120px;
+}
+.areas {
+    margin-top: 5px;
+    list-style-type: none; 
+}
+.icon-folder {
+    width: 15px;
+    height: 15px;
+}
+.all-of-areas {
+   
+    list-style-type: none;
+    padding-left: 10px;
+    height: 20px;
+}
+.list-of-assets {
+    height: 30px;
+    margin-top: 20px;
+  
+}
+.list-label {
+    width: 260px;
+    border: 1px solid #e3e6e8;
+   
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+ul :hover {
+    background-color: #CFCFCF;
+}
+ul.areas {
+    margin-left: 40px;
+    width: 50px;
+}
+
+.search-bar {
+    font-size: 15px;
+    height: 30px;
+    padding-top: 10px;
+}
+.txt-search {
+    width: 110px;
+    height: 20px;
+    margin-left: 65px;
+}
+.btn-search {
+    width: 60px;
+    height: 20px;
+    margin-left: 10px;
+}
+.meta-data {
+    width: 260px;
+    height: 20px;
+    
+}
+table {
+    width: 260px;
+    height: 200px;
+    border-top: 1px solid #F6F6F7;
+ }
+ table tr td {
+    width: 120px;
+    height: 10px;
+    padding-top: 10px;
+    border-bottom: 0.5px solid #EEEEF0;
+    border-right: 0.5px solid #EEEEF0;
+ }
+ tr:hover {
+     background-color: #CFCFCF;
+ }
+ .position-content {
+    overflow:scroll;
+    height: 380px;
+    padding-left: 5px;
+}
+ .option-list-page {
+     width: 260px;
+     height: 30px;
+     padding-left: 10px;
+}
+.icon-skip, .icon-left  {
+     width: 15px;
+     height: 15px;
+     margin-top: 7px;
+     margin-left: 15px;
+     background-color: transparent;
+}
+.n-page {
+   width: 15px;
+   height: 12px;
+   border: 1px solid #e3e6e8;
+}
+.icon-next {
+    width: 15px;
+    height: 10px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 15px; 
+    background-color: transparent;
+}
+.asset-trouble {
+    width: 260px;
+    height: 40px;
+    padding-top: 10px;
+}
+.asset-trouble-label {
+    height: 30px;
+    padding-top:2px;
+   
+}
+.icon-add {
+    width: 15px;
+    height: 15px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.show-option {
+    width: 30px;
+    height: 850px; 
+    background-color: #e3e6e8; ;   
+}
+.btn-show {
+    width: 25px;
+    height: 20px;
+}
+.icon-show {
+    width: 10px;
+    height: 10px;
+}
+td.stamp {
+    text-align: center;
+}
+/* left end */
+
+/* detail device start */
+#detail-device {
+    position: fixed;
+    right: 0px;
+    top: 120px;
+    width: 260px;
+    height: 500px;
+}
+.device-detail-label {
+    background-color: #e3e6e8;
+    height: 25px;
+    padding-top: 2px; 
+}
+
+.label {
+    font-size: 15px;
+    padding-left: 5px;
+}
+.device-detail-content {
+    height: 500px;
+    float: left;
+    background-color: white;
+}
+table {
+    margin-top: 30px;
+}
+th.label {
+    padding-right: 10px;
+    text-align: left;
+}   
+td.detail {
+    width: 150px;
+    height: 20px;
+    text-align: left;
+    font-style: none;
+    border: 1px solid black;
+}
+tr {
+    height: 30px;
+}
+/* detail device end */

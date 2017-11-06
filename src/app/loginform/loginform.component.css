@@ -1,0 +1,38 @@
+form {
+	margin-top: 10%;
+}
+h1 {
+	font-size: 50px;
+	margin-left: 35%;
+}
+:host {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+div.input {
+	position: relative;
+}
+div.input input {
+	margin-top: 10px;
+	padding-top: 10px;
+	font-size: 15px;
+	outline: 0;
+	width: 400px;
+	height: 20px;
+	text-align: left;
+}
+.btn-login {
+    margin-top: 10px;
+	margin-left: 35%;
+	margin-top: 20px;	
+}
+.btn-login input {
+	width: 130px;
+	height: 30px;
+	background-color: paleturquoise;
+}
+.messageError span {
+    color: red;
+}

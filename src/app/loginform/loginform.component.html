@@ -1,0 +1,18 @@
+<form id="formLogin" (submit)="loginUser($event)">
+  <h1> Login </h1>
+  <div class="input">
+    <input type="text" (pointerout)="mouseOutUser($event)" (keydown.Tab)="mouseOutUser($event)" value="" placeholder="Username">
+  </div>
+  <div class="messageError">
+    <span> {{muser}} </span>
+  </div>
+  <div class="input">
+    <input type="password" (pointerout)="mouseOutPass($event)" (keydown.Tab)="mouseOutPass($event)" value="" placeholder="Password">
+  </div>
+  <div class="messageError">
+    <span> {{mpass}} </span>
+  </div>
+  <div class="btn-login">
+    <input type="submit" value="Login">
+  </div>
+</form>
